@@ -5,11 +5,14 @@ db = SQLAlchemy()
 meta = MetaData()
 
 ## Client DB Model
-class clients(db.Model):
+class Clients(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    firstname = db.Column(db.String(255), unique=True, nullable=False)
-    lastname = db.Column(db.String(255), unique=True, nullable=False)
+    firstName = db.Column(db.String(255), unique=True, nullable=False)
+    lastName = db.Column(db.String(255), unique=True, nullable=False)
     
-    def __init__(self, firstname, lastname):
-        self.firstname = firstname
-        self.lastname = lastname
+    def __init__(self, firstName, lastName):
+        self.firstName = firstName
+        self.lastName = lastName
+        
+    def __repr__(self):
+        return '<Clients %r>' % self.firstName

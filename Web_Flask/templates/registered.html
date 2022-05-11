@@ -3,7 +3,7 @@
 {% block body %}
     <ul>
         {% for client in clients %}
-            <li>{{client}}</li>
+            <li>{{client.firstName}} {{client.lastName}}</li>
         {% endfor %}
     </ul>
 {% endblock %}
