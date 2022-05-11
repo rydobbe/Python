@@ -1,5 +1,5 @@
 {% extends "layout.html" %}
-
+{% block head %}{% block title %}View All Clients{% endblock %}{% endblock %}
 {% block body %}
     <ul>
         {% for client in clients %}

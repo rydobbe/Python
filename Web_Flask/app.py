@@ -1,9 +1,10 @@
 #Imports
+from enum import unique
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.sql import text
+from sqlalchemy import MetaData
+#from models import Client
 import csv
-import os
 
 #Configure Flask
 app = Flask(__name__)
@@ -16,21 +17,16 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 #db will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
 
-##Registered Clients
-# clients = []
-
-
-##Test db connection
-# @app.route("/")
-# def testdb():
-#     try:
-#         db.session.query(text('1')).from_statement(text('SELECT 1')).all()
-#         return '<h1>It works.</h1>'
-#     except Exception as e:
-#         # e is the description of the error
-#         error_text = "<p>The error:<br>" + str(e) + "<p>"
-#         hed = '<h1>Something is broken.</h1>'
-#         return hed + error_text
+## Client DB Model
+class clients(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(255), unique=True, nullable=False)
+    lastname = db.Column(db.String(255), unique=True, nullable=False)
+    
+    def __init__(self, firstname, lastname):
+        self.firstname = firstname
+        self.lastname = lastname
+        db.session.commit()
 
 
 @app.route("/")
@@ -38,6 +34,7 @@ def index():
     return render_template("index.html")
 
 
+#TODO link this to database
 @app.route("/register", methods=["POST"])
 def register():
     if not request.form.get("firstName") or not request.form.get("lastName"):
@@ -45,16 +42,17 @@ def register():
     file = open("registered.csv", "a")
     writer = csv.writer(file)
     writer.writerow((request.form.get("firstName"), request.form.get("lastName")))
+    
+    
+    
     return render_template("success.html")
 
 
 @app.route("/registered_clients")
 def registered_clients():
-    with open("registered.csv", "r") as file:
-        reader = csv.reader(file)
-        clients = list(reader)
-    return render_template("registered.html", clients=clients)
+    return render_template("registered.html", clients=clients.query.all())
 
 # __name__ is set to __main__ at runtime when running app directly
 if __name__ == '__main__':
+    db.create_all()
     app.run(debug=True)
