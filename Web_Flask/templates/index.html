@@ -2,13 +2,6 @@
 
 {% block head %}{% block title %}{% endblock %}{% endblock %}
 {% block body %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <p>{{message}}</p>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
 <form action="/register", method="post">
     <input name="firstName" placeholder="First Name" type="text"></input>
     <input name="lastName" placeholder="Last Name" type="text"></input>
