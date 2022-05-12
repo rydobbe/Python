@@ -53,6 +53,7 @@ def registered_clients():
 @app.route("/drop", methods=['POST'])
 def drop():
     db.drop_all()
+    db.create_all()
     db.session.commit()
     return redirect(url_for("index"))
 
