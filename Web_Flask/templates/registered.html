@@ -6,9 +6,10 @@
             <li>{{client.firstName}} {{client.lastName}}</li>
         {% endfor %}
     </ul>
-
     <form action="/drop" method="post">
         <button class='btn btn-default'>Drop Table</button>
     </form>
-    
+    <form action="/add" method="post">
+        <button class='btn btn-default'>Add Client</button>
+    </form>
 {% endblock %}

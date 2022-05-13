@@ -16,8 +16,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # DB will be used for all SQLAlchemy commands
 db = SQLAlchemy(app)
 
-# DB Model
-class Clients(db.Model):
+# # DB Model
+class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     firstName = db.Column(db.String(255), nullable=False)
     lastName = db.Column(db.String(255), nullable=False)
@@ -27,7 +27,7 @@ class Clients(db.Model):
         self.lastName = lastName
         
     def __repr__(self):
-        return '<Clients %r>' % self.firstName
+        return '<Client %r>' % self.firstName
 
 
 @app.route("/")
@@ -39,7 +39,7 @@ def index():
 def register():
     firstName = request.form['firstName']
     lastName = request.form['lastName']
-    client = Clients(firstName=firstName, lastName=lastName)
+    client = Client(firstName=firstName, lastName=lastName)
     db.session.add(client)
     db.session.commit()
     return redirect(url_for("registered_clients"))
@@ -47,7 +47,7 @@ def register():
 
 @app.route("/registered_clients")
 def registered_clients():
-    return render_template("registered.html", clients=Clients.query.all())
+    return render_template("registered.html", clients=Client.query.all())
 
 
 @app.route("/drop", methods=['POST'])
@@ -57,6 +57,9 @@ def drop():
     db.session.commit()
     return redirect(url_for("index"))
 
+@app.route("/add", methods=['POST'])
+def add():
+    return redirect(url_for("index"))
 
 # __name__ is set to __main__ at runtime when running app directly
 if __name__ == '__main__':
