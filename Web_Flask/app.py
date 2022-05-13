@@ -105,6 +105,10 @@ def drop():
 def add():
     return redirect(url_for("index"))
 
+@app.route("/client_view")
+def client_view():
+    return render_template("client_view.html")
+
 # __name__ is set to __main__ at runtime when running app directly
 if __name__ == '__main__':
     db.create_all()
