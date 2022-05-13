@@ -1,4 +1,5 @@
 #Imports
+from datetime import date
 from enum import unique
 from flask import Flask, flash, redirect, render_template, request, url_for
 from flask_sqlalchemy import SQLAlchemy
@@ -18,16 +19,40 @@ db = SQLAlchemy(app)
 
 # # DB Model
 class Client(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer(), primary_key=True)
     firstName = db.Column(db.String(255), nullable=False)
     lastName = db.Column(db.String(255), nullable=False)
+    address = db.Column(db.String(255), nullable=False)
+    city = db.Column(db.String(50), nullable=False)
+    state = db.Column(db.String(10), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
+    phone = db.Column(db.Integer(), nullable=False)
+    socialSecurity = db.Column(db.Integer(), nullable=False)
+    dateOfBirth = db.Column(db.Integer(), nullable=False)
+    annualIncome = db.Column(db.Integer(), nullable=False)
+    monthlyRent = db.Column(db.Integer(), nullable=False)
+    zipCode = db.Column(db.Integer(), nullable=False)
+    country = db.Column(db.String(50), nullable=False)
     
-    def __init__(self, firstName, lastName):
+
+    
+    def __init__(self, firstName, lastName, address, city,
+                        state, email, phone, socialSecurity,
+                        dateOfBirth, annualIncome, monthlyRent,
+                        zipCode, country):
         self.firstName = firstName
         self.lastName = lastName
-        
-    def __repr__(self):
-        return '<Client %r>' % self.firstName
+        self.address = address
+        self.city = city
+        self.state = state
+        self.email = email
+        self.phone = phone
+        self.socialSecurity = socialSecurity
+        self.dateOfBirth = dateOfBirth
+        self.annualIncome = annualIncome
+        self.monthlyRent = monthlyRent
+        self.zipCode = zipCode
+        self.country = country
 
 
 @app.route("/")
@@ -39,7 +64,22 @@ def index():
 def register():
     firstName = request.form['firstName']
     lastName = request.form['lastName']
-    client = Client(firstName=firstName, lastName=lastName)
+    address = request.form['address']
+    city = request.form['city']
+    state = request.form['state']
+    email = request.form['email']
+    phone = request.form['phone']
+    socialSecurity = request.form['socialSecurity']
+    dateOfBirth = request.form['dateOfBirth']
+    annualIncome = request.form['annualIncome']
+    monthlyRent = request.form['monthlyRent']
+    zipCode = request.form['zipCode']
+    country = request.form['country']
+    client = Client(firstName=firstName, lastName=lastName, address=address,
+                    city=city, state=state, email=email, phone=phone,
+                    socialSecurity=socialSecurity, dateOfBirth=dateOfBirth,
+                    annualIncome=annualIncome, monthlyRent=monthlyRent, zipCode=zipCode,
+                    country=country)
     db.session.add(client)
     db.session.commit()
     return redirect(url_for("registered_clients"))
