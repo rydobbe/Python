@@ -49,6 +49,9 @@ def register():
 def registered_clients():
     return render_template("registered.html", clients=Client.query.all())
 
+@app.route("/view_clients", methods=['POST'])
+def view_clients():
+    return redirect(url_for("registered_clients"))
 
 @app.route("/drop", methods=['POST'])
 def drop():
