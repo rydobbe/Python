@@ -1,29 +1,31 @@
 {% extends "layout.html" %}
 {% block head %}
 {{ super() }}
-    {% block title %}View All Clients{% endblock %}
 {% endblock %}
 {% block body %}
-    <div class="container">
-        <ul>
-            {% for client in clients %}
-                <li><a href="">{{client.firstName}} {{client.lastName}}</a></li>
-            {% endfor %}
-        </ul>
-        <div class="row">
-            <div class="col-2">
-                <form action="/drop" method="post">
-                    <button class='btn btn-dark'>Drop Table</button>
-                </form>
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-header">
+                {% block title %}View All Clients{% endblock %}
             </div>
-            <div class="col-2">
-                <form action="/add" method="post">
-                    <button class='btn btn-dark'>Add Client</button>
-                </form>
-            </div>
-            
+            <ul class="p-4">
+                {% for client in clients %}
+                    <li class="pl-4 mt-2"><a href="" >{{client.firstName}} {{client.lastName}}</a></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
-
-    {{ super() }}
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-auto">
+            <form action="/drop" method="post">
+                <button class='btn-sm btn-dark'>Drop Table</button>
+            </form>
+        </div>
+        <div class="col-md-auto">
+            <form action="/add" method="post">
+                <button class='btn-sm btn-dark'>Add Client</button>
+            </form>
+        </div>
+    </div>
+{{ super() }}
 {% endblock %}

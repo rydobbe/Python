@@ -13,10 +13,10 @@
 			"{% extends \"layout.html\" %}",
 			"{% block head %}",
 			"{{ super() }}",
-				"{% block title %}Client View{% endblock %}",
+				"{% block title %}{% endblock %}",
 			"{% endblock %}",
 			"{% block body %}",
-				"{{ super() }}",
+			"{{ super() }}",
 			"{% endblock %}"
 		],
 		"description": ""

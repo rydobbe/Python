@@ -1,5 +1,35 @@
 /* Custom CSS */
 
+
+li{
+    border: solid; 
+    border-color: grey; 
+    border-width: 2px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    list-style: none;
+}
+
+a{
+    color: red;
+}
+a:hover{
+    color:green;
+}
+
+/* Bootstrap Elements */
+.card{
+    background-color: black;
+    opacity: 40%;
+    width: 70%;
+}
+
+.card-header{
+    color: white;
+}
+
+/* HTML Elements */
 body{
     background-color: rgb(104, 99, 99);
 }

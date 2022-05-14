@@ -1,41 +1,51 @@
 {% extends "layout.html" %}
 {% block head %}
 {{ super() }}
-    {% block title %}Home Page{% endblock %}
 {% endblock %}
 {% block body %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <form action="/register", method="post">
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-header">{% block title %}Home Page{% endblock %}</div>
+            <form id="client-form" class="mt-5" action="/register" method="post">
+                <div class="row justify-content-center">
                     <input name="firstName" placeholder="First Name" type="text"></input>
                     <input name="lastName" placeholder="Last Name" type="text"></input>
-                    <input name="address" placeholder="Address" type="text"></input>
-                    <input name="city" placeholder="City" type="text"></input>
-                    <input name="state" placeholder="State" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
                     <input name="email" placeholder="Email" type="text"></input>
                     <input name="phone" placeholder="Phone Number" type="text"></input>
-                    <input name="socialSecurity" placeholder="Social Security" type="text"></input>
-                    <input name="dateOfBirth" placeholder="Date-of-Birth" type="text"></input>
-                    <input name="annualIncome" placeholder="Annual Income" type="text"></input>
-                    <input name="monthlyRent" placeholder="Monthly Rent" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input name="address" placeholder="Address" type="text"></input>
+                    <input name="city" placeholder="City" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input name="state" placeholder="State" type="text"></input>
                     <input name="zipCode" placeholder="Zip Code" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input name="dateOfBirth" placeholder="Date-of-Birth" type="text"></input>
+                    <input name="socialSecurity" placeholder="Social Security" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input name="monthlyRent" placeholder="Monthly Rent" type="text"></input>
+                    <input name="annualIncome" placeholder="Annual Income" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
                     <input name="country" placeholder="Country" type="text"></input>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <button class="btn-dark type="submit">Submit</button>
-                    </div>
-                </form>
+                </div>
+            </form>
+            <div class="row justify-content-center mt-5 mb-5">
+                <div class="col-md-auto">
+                    <button form="client-form" class="btn-dark type="submit">Submit</button>
+                </div>
+                <div class="col-md-auto">
+                    <form action="/view_clients" method="post">
+                        <button class="btn-dark" type="submit">View Clients</button>
+                    </form>
+                </div>
             </div>
         </div>
-        <br>
-        <br>
-            <form action="/view_clients" method="post">
-                <button class="btn-dark" type="submit">View Clients</button>
-            </form>
-        </div>
     </div>
-
-    {{ super() }}
+{{ super() }}
 {% endblock %}
