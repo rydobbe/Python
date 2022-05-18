@@ -5,7 +5,7 @@
 {% block body %}
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">{% block title %}Home Page{% endblock %}</div>
+            <div class="card-header">{% block title %}{{title}}{% endblock %}</div>
             <form id="client-form" class="mt-5" action="/register" method="post">
                 <div class="row justify-content-center">
                     <input name="firstName" placeholder="First Name" type="text"></input>
@@ -35,13 +35,13 @@
                     <input name="country" placeholder="Country" type="text"></input>
                 </div>
             </form>
-            <div class="row justify-content-center mt-5 mb-5">
+            <div class="row justify-content-center mt-5 mb-3">
                 <div class="col-md-auto">
-                    <button form="client-form" class="btn-dark type="submit">Submit</button>
+                    <button form="client-form" class="btn-sm btn-dark type="submit">Submit</button>
                 </div>
                 <div class="col-md-auto">
                     <form action="/view_clients" method="post">
-                        <button class="btn-dark" type="submit">View Clients</button>
+                        <button class="btn-sm btn-dark" type="submit">View Clients</button>
                     </form>
                 </div>
             </div>

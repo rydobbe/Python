@@ -1,8 +1,51 @@
 {% extends "layout.html" %}
 {% block head %}
 {{ super() }}
-    {% block title %}Client View{% endblock %}
 {% endblock %}
 {% block body %}
+    <div class="row justify-content-center">
+        <div class="card">
+            <div class="card-header">{% block title %}{{client.firstName}} {{client.lastName}}{{title}}{% endblock %}</div>
+            <form id="client-view-form" class="mt-5" method="post">
+                <div class="row justify-content-center">
+                    <input class="text-red" name="firstName" placeholder ="First Name" value="{{client.firstName}}" type="text"></input>
+                    <input class="text-red" name="lastName" placeholder ="Last Name" value="{{client.lastName}}" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input class="text-red" name="email" placeholder ="Email" value="{{client.email}}" type="text"></input>
+                    <input class="text-red" name="phone" placeholder ="Phone Number" value="{{client.phone}}" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input class="text-red" name="address" placeholder ="Address" value="{{client.address}}" type="text"></input>
+                    <input class="text-red" name="city" placeholder ="City" value="{{client.city}}" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input class="text-red" name="state" placeholder ="State" value="{{client.state}}" type="text"></input>
+                    <input class="text-red" name="zipCode" placeholder ="Zip Code" value="{{client.zipCode}}" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input class="text-red" name="dateOfBirth" placeholder ="Date of Birth" value="{{client.dateOfBirth}}" type="text"></input>
+                    <input class="text-red" name="socialSecurity" placeholder ="Social Security" value="{{client.socialSecurity}}" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input class="text-red" name="monthlyRent" placeholder ="Monthly Rent" value="{{client.monthlyRent}}" type="text"></input>
+                    <input class="text-red" name="annualIncome" placeholder ="Annual Income" value="{{client.annualIncome}}" type="text"></input>
+                </div>
+                <div class="row justify-content-center">
+                    <input class="text-red" name="country" placeholder ="Country" value="{{client.country}}" type="text"></input>
+                </div>
+            </form>
+            <div class="row justify-content-center mt-5 mb-3">
+                <div class="col-md-auto">
+                    <button form="client-view-form" class="btn-dark type="submit">Submit</button>
+                </div>
+                <div class="col-md-auto">
+                    <form action="/view_clients" method="post">
+                        <button class="btn-dark" type="submit">View Clients</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 {{ super() }}
 {% endblock %}

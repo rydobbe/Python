@@ -6,25 +6,44 @@
     <div class="row justify-content-center">
         <div class="card">
             <div class="card-header">
-                {% block title %}View All Clients{% endblock %}
+                {% block title %}{{title}}{% endblock %}
             </div>
             <ul class="p-4">
                 {% for client in clients %}
-                    <li class="pl-4 mt-2"><a href="" >{{client.firstName}} {{client.lastName}}</a></li>
+                    <li class="pl-4 mt-2">
+                        <div class="row">
+                            <div class="col-3">
+                                <div class="text-orange">{{client.firstName}} {{client.lastName}}</div>
+                            </div>
+                            <div class="col-3">
+                                <div class="text-orange">{{client.email}}</div>
+                            </div>
+                            <div class="col-4">
+                                <div class="text-orange">{{client.phone}}</div>
+                            </div>
+                            <div class="col-2">
+                                <a href="{{ url_for('client', client_id=client.id, client_lastName=client.lastName)}}">
+                                    <button class='btn-sm mb-2 ml-5'>Edit</button>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        
+                    </li>
                 {% endfor %}
             </ul>
-        </div>
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-md-auto">
-            <form action="/drop" method="post">
-                <button class='btn-sm btn-dark'>Drop Table</button>
-            </form>
-        </div>
-        <div class="col-md-auto">
-            <form action="/add" method="post">
-                <button class='btn-sm btn-dark'>Add Client</button>
-            </form>
+            <div class="row justify-content-center mt-5 mb-3">
+                <div class="col-md-auto">
+                    <form action="/drop" method="post">
+                        <button class='btn-sm btn-dark'>Drop Table</button>
+                    </form>
+                </div>
+                <div class="col-md-auto">
+                    <form action="/add" method="post">
+                        <button class='btn-sm btn-dark'>Add Client</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 {{ super() }}

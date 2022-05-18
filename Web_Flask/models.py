@@ -1,18 +1,20 @@
 # Imports
+from pickle import TRUE
 from flask_sqlalchemy import SQLAlchemy
 
 db= SQLAlchemy()
 
 class Client(db.Model):
+    __tablename__ = "Client"
     id = db.Column(db.Integer(), primary_key=True)
     firstName = db.Column(db.String(255), nullable=False)
     lastName = db.Column(db.String(255), nullable=False)
     address = db.Column(db.String(255), nullable=False)
     city = db.Column(db.String(50), nullable=False)
     state = db.Column(db.String(10), nullable=False)
-    email = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), unique=True ,nullable=False)
     phone = db.Column(db.Integer(), nullable=False)
-    socialSecurity = db.Column(db.Integer(), nullable=False)
+    socialSecurity = db.Column(db.Integer(), unique=True ,nullable=False)
     dateOfBirth = db.Column(db.Integer(), nullable=False)
     annualIncome = db.Column(db.Integer(), nullable=False)
     monthlyRent = db.Column(db.Integer(), nullable=False)
@@ -36,5 +38,3 @@ class Client(db.Model):
         self.monthlyRent = monthlyRent
         self.zipCode = zipCode
         self.country = country
-        
-        

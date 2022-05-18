@@ -18,6 +18,14 @@ a:hover{
     color:green;
 }
 
+.text-orange{
+    color: rgb(255, 166, 0);
+}
+
+.text-red{
+    color: red;
+}
+
 /* Bootstrap Elements */
 .card{
     background-color: black;

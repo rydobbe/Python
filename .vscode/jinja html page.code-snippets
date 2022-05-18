@@ -13,7 +13,7 @@
 			"{% extends \"layout.html\" %}",
 			"{% block head %}",
 			"{{ super() }}",
-				"{% block title %}{% endblock %}",
+				"{% block title %}{{title}}{% endblock %}",
 			"{% endblock %}",
 			"{% block body %}",
 			"{{ super() }}",

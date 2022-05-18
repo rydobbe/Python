@@ -1,6 +1,7 @@
 #Imports
 from flask import Flask, redirect, render_template, request, url_for
 from models import db, Client
+from sqlalchemy import update
 
 
 #Configure Flask
@@ -18,7 +19,7 @@ db.init_app(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html", title = "New Client")
 
 
 @app.route("/register", methods=['POST'])
@@ -48,13 +49,17 @@ def register():
 
 @app.route("/registered_clients")
 def registered_clients():
-    return render_template("registered.html", clients=Client.query.all())
+    return render_template("registered.html",title="View All Clients", clients=Client.query.all())
 
 
 @app.route("/view_clients", methods=['POST'])
 def view_clients():
     return redirect(url_for("registered_clients"))
 
+
+@app.route("/add", methods=['POST'])
+def add():
+    return redirect(url_for("index"))
 
 @app.route("/drop", methods=['POST'])
 def drop():
@@ -64,17 +69,45 @@ def drop():
     return redirect(url_for("index"))
 
 
-@app.route("/add", methods=['POST'])
-def add():
-    return redirect(url_for("index"))
-
-
-@app.route("/client_view")
-def client_view():
-    return render_template("client_view.html")
-
+@app.route("/<int:client_id>/<client_lastName>", methods=['GET', 'POST'])
+def client(client_id, client_lastName):
+    client = Client.query.get_or_404(client_id)
+    if request.method == 'POST':
+        firstName = request.form['firstName']
+        lastName = request.form['lastName']
+        address = request.form['address']
+        city = request.form['city']
+        state = request.form['state']
+        email = request.form['email']
+        phone = request.form['phone']
+        socialSecurity = request.form['socialSecurity']
+        dateOfBirth = request.form['dateOfBirth']
+        annualIncome = request.form['annualIncome']
+        monthlyRent = request.form['monthlyRent']
+        zipCode = request.form['zipCode']
+        country = request.form['country']
+        
+        client.firstName = firstName
+        client.lastName = lastName
+        client.address = address
+        client.city = city
+        client.state = state
+        client.email = email
+        client.phone = phone
+        client.socialSecurity = socialSecurity
+        client.dateOfBirth = dateOfBirth
+        client.annualIncome = annualIncome
+        client.monthlyRent = monthlyRent
+        client.zipCode = zipCode
+        client.country = country 
+        
+        db.session.add(client)
+        db.session.commit()
+        return redirect(url_for('registered_clients'))
+    return render_template('client_view.html', client=client)
 
 # __name__ is set to __main__ at runtime when running app directly
 if __name__ == '__main__':
     db.create_all()
     app.run(debug=True)
+    
