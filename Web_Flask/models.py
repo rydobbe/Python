@@ -1,5 +1,6 @@
 # Imports
 from pickle import TRUE
+from unittest.util import _MAX_LENGTH
 from flask_sqlalchemy import SQLAlchemy
 
 db= SQLAlchemy()
@@ -14,7 +15,7 @@ class Client(db.Model):
     state = db.Column(db.String(10), nullable=False)
     email = db.Column(db.String(255), unique=True ,nullable=False)
     phone = db.Column(db.Integer(), nullable=False)
-    socialSecurity = db.Column(db.Integer(), unique=True ,nullable=False)
+    socialSecurity = db.Column(db.Integer(), _MAX_LENGTH=9, unique=True ,nullable=False)
     dateOfBirth = db.Column(db.Integer(), nullable=False)
     annualIncome = db.Column(db.Integer(), nullable=False)
     monthlyRent = db.Column(db.Integer(), nullable=False)

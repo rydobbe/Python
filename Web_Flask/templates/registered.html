@@ -11,9 +11,11 @@
             <ul class="p-4">
                 {% for client in clients %}
                     <li class="pl-4 mt-2">
-                        <div class="row">
+                        <div class="row border-bottom">
                             <div class="col-3">
+                                <a href="{{ url_for('client_view', client_id=client.id, client_lastName=client.lastName)}}">
                                 <div class="text-orange">{{client.firstName}} {{client.lastName}}</div>
+                            </a>
                             </div>
                             <div class="col-3">
                                 <div class="text-orange">{{client.email}}</div>
@@ -22,7 +24,7 @@
                                 <div class="text-orange">{{client.phone}}</div>
                             </div>
                             <div class="col-2">
-                                <a href="{{ url_for('client', client_id=client.id, client_lastName=client.lastName)}}">
+                                <a href="{{ url_for('client_edit', client_id=client.id, client_lastName=client.lastName)}}">
                                     <button class='btn-sm mb-2 ml-5'>Edit</button>
                                 </a>
                             </div>
@@ -35,12 +37,12 @@
             <div class="row justify-content-center mt-5 mb-3">
                 <div class="col-md-auto">
                     <form action="/drop" method="post">
-                        <button class='btn-sm btn-dark'>Drop Table</button>
+                        <button class='btn-sm btn-dark' onclick="return confirm('Delete all Clients?')" style="background-color: red;">Delete All</button>
                     </form>
                 </div>
                 <div class="col-md-auto">
                     <form action="/add" method="post">
-                        <button class='btn-sm btn-dark'>Add Client</button>
+                        <button class='btn-sm btn-dark' style="background-color: green;">Add Client</button>
                     </form>
                 </div>
             </div>

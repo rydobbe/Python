@@ -5,47 +5,78 @@
 {% block body %}
     <div class="row justify-content-center">
         <div class="card">
-            <div class="card-header">{% block title %}{{client.firstName}} {{client.lastName}}{{title}}{% endblock %}</div>
-            <form id="client-view-form" class="mt-5" method="post">
-                <div class="row justify-content-center">
-                    <input class="text-red" name="firstName" placeholder ="First Name" value="{{client.firstName}}" type="text"></input>
-                    <input class="text-red" name="lastName" placeholder ="Last Name" value="{{client.lastName}}" type="text"></input>
+            <div class="container">
+                <div class="card-header">{% block title %}{{title}}{% endblock %}</div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Name:</h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.firstName}} {{client.lastName}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Email:</h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.email}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Phone:</h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.phone}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Address: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.address}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">City: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.city}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">State: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.state}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Zip Code: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.zipCode}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Social Security: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.socialSecurity}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Date of Birth: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.dateOfBirth}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Monthly Rent: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.monthlyRent}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Annual Income: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.annualIncome}}</h5></div>
+                    </div>
+                    <div class="row justify-content-center border-bottom">
+                        <div class="col-3"><h5 class="text-orange">Country: </h5></div>
+                        <div class="col-5"><h5 class="text-white">{{client.country}}</h5></div>
+                    </div>
                 </div>
-                <div class="row justify-content-center">
-                    <input class="text-red" name="email" placeholder ="Email" value="{{client.email}}" type="text"></input>
-                    <input class="text-red" name="phone" placeholder ="Phone Number" value="{{client.phone}}" type="text"></input>
-                </div>
-                <div class="row justify-content-center">
-                    <input class="text-red" name="address" placeholder ="Address" value="{{client.address}}" type="text"></input>
-                    <input class="text-red" name="city" placeholder ="City" value="{{client.city}}" type="text"></input>
-                </div>
-                <div class="row justify-content-center">
-                    <input class="text-red" name="state" placeholder ="State" value="{{client.state}}" type="text"></input>
-                    <input class="text-red" name="zipCode" placeholder ="Zip Code" value="{{client.zipCode}}" type="text"></input>
-                </div>
-                <div class="row justify-content-center">
-                    <input class="text-red" name="dateOfBirth" placeholder ="Date of Birth" value="{{client.dateOfBirth}}" type="text"></input>
-                    <input class="text-red" name="socialSecurity" placeholder ="Social Security" value="{{client.socialSecurity}}" type="text"></input>
-                </div>
-                <div class="row justify-content-center">
-                    <input class="text-red" name="monthlyRent" placeholder ="Monthly Rent" value="{{client.monthlyRent}}" type="text"></input>
-                    <input class="text-red" name="annualIncome" placeholder ="Annual Income" value="{{client.annualIncome}}" type="text"></input>
-                </div>
-                <div class="row justify-content-center">
-                    <input class="text-red" name="country" placeholder ="Country" value="{{client.country}}" type="text"></input>
-                </div>
-            </form>
-            <div class="row justify-content-center mt-5 mb-3">
-                <div class="col-md-auto">
-                    <button form="client-view-form" class="btn-dark type="submit">Submit</button>
-                </div>
-                <div class="col-md-auto">
-                    <form action="/view_clients" method="post">
-                        <button class="btn-dark" type="submit">View Clients</button>
-                    </form>
+                <div class="row justify-content-center mt-3 mb-3">
+                    <div class="col-md-auto">
+                        <form action="/view_clients" method="post">
+                            <button class="btn-sm btn-dark" type="submit">&laquo; Back</button>
+                        </form>
+                    </div>
+                    <div class="col-md-auto">
+                        <button class="btn-sm btn-dark" type="submit" style="background-color: green;">Applications</button>
+                    </div>
+                    <div class="col-md-auto">
+                        <a href="{{ url_for('client_edit', client_id=client.id, client_lastName=client.lastName)}}">
+                            <button class="btn-sm" type="submit">Edit</button>
+                        </a>
+                    </div>
+                    <div class="col-md-auto">
+                        <form method="post" action="{{ url_for('delete_client', client_id=client.id) }}">
+                            <button class="btn-sm btn-dark" type="submit" onclick="return confirm('Delete Client?')" style="background-color: red;">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-        </div>
     </div>
 {{ super() }}
 {% endblock %}

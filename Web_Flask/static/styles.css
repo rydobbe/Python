@@ -1,7 +1,36 @@
-/* Custom CSS */
+/* Custom HTML */
+body{
+    background-color: rgb(104, 99, 99);
+}
 
+a{
+    color: red;
+}
+a:hover{
+    color:rgb(8, 124, 160);
+}
 
 li{
+    list-style-type: none;
+}
+
+::placeholder{
+    color: red;
+}
+
+/* Custom Bootstrap*/
+.card{
+    background-color: black;
+    opacity: 40%;
+    width: 70%;
+    margin-top: 10%;
+}
+
+.card-header{
+    color: white;
+}
+
+.border-bottom{
     border: solid; 
     border-color: grey; 
     border-width: 2px;
@@ -9,13 +38,6 @@ li{
     border-left: none;
     border-right: none;
     list-style: none;
-}
-
-a{
-    color: red;
-}
-a:hover{
-    color:green;
 }
 
 .text-orange{
@@ -26,18 +48,6 @@ a:hover{
     color: red;
 }
 
-/* Bootstrap Elements */
-.card{
-    background-color: black;
-    opacity: 40%;
-    width: 70%;
-}
-
-.card-header{
+.text-white{
     color: white;
-}
-
-/* HTML Elements */
-body{
-    background-color: rgb(104, 99, 99);
 }

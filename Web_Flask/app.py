@@ -1,7 +1,7 @@
 #Imports
 from flask import Flask, redirect, render_template, request, url_for
 from models import db, Client
-from sqlalchemy import update
+
 
 
 #Configure Flask
@@ -69,8 +69,8 @@ def drop():
     return redirect(url_for("index"))
 
 
-@app.route("/<int:client_id>/<client_lastName>", methods=['GET', 'POST'])
-def client(client_id, client_lastName):
+@app.route("/<int:client_id>/<client_lastName>/edit", methods=['GET', 'POST'])
+def client_edit(client_id, client_lastName):
     client = Client.query.get_or_404(client_id)
     if request.method == 'POST':
         firstName = request.form['firstName']
@@ -104,7 +104,23 @@ def client(client_id, client_lastName):
         db.session.add(client)
         db.session.commit()
         return redirect(url_for('registered_clients'))
-    return render_template('client_view.html', client=client)
+    return render_template('client_edit.html', client=client, title="Edit Client")
+
+
+@app.post('/<int:client_id>/delete/')
+def delete_client(client_id):
+    client = Client.query.get_or_404(client_id)
+    db.session.delete(client)
+    db.session.commit()
+    return redirect(url_for('registered_clients'))
+
+
+@app.route("/<int:client_id>/<client_lastName>/view", methods=['GET', 'POST'])
+def client_view(client_id, client_lastName):
+    client = Client.query.get_or_404(client_id)
+    return render_template('client_view.html', client=client, title="Client View")
+   
+
 
 # __name__ is set to __main__ at runtime when running app directly
 if __name__ == '__main__':

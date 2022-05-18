@@ -25,7 +25,7 @@
                 </div>
                 <div class="row justify-content-center">
                     <input name="dateOfBirth" placeholder="Date-of-Birth" type="text"></input>
-                    <input name="socialSecurity" placeholder="Social Security" type="text"></input>
+                    <input name="socialSecurity" maxlength="11" placeholder="Social Security" type="text"></input>
                 </div>
                 <div class="row justify-content-center">
                     <input name="monthlyRent" placeholder="Monthly Rent" type="text"></input>
@@ -37,12 +37,12 @@
             </form>
             <div class="row justify-content-center mt-5 mb-3">
                 <div class="col-md-auto">
-                    <button form="client-form" class="btn-sm btn-dark type="submit">Submit</button>
-                </div>
-                <div class="col-md-auto">
                     <form action="/view_clients" method="post">
                         <button class="btn-sm btn-dark" type="submit">View Clients</button>
                     </form>
+                </div>
+                <div class="col-md-auto">
+                    <button form="client-form" class="btn-sm btn-dark type="submit" style="background-color: green;">Submit</button>
                 </div>
             </div>
         </div>
